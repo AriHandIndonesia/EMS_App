@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.emsspring.emsmansys.Mapper.EmployeeMapper">
+    <resultMap id="employeeMap" type="org.emsspring.emsmansys.Entity.Employee">
+        <id column="employee_id" jdbcType="INTEGER" property="employeeId"/>
+        <result column="first_name" jdbcType="VARCHAR" property="firstName"/>
+        <result column="last_name" jdbcType="VARCHAR" property="lastName"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="hire_date" jdbcType="DATE" property="hireDate"/>
+        <result column="birth_date" jdbcType="DATE" property="birthDate"/>
+        <result column="salary_id" jdbcType="INTEGER" property="salaryId"/>
+        <result column="department_id" jdbcType="INTEGER" property="departmentId"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+    </resultMap>
+
+    <select id="getAllEmployee" resultMap="employeeMap">
+        SELECT * FROM employee
+    </select>
+</mapper>

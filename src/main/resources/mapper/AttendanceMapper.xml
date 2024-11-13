@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.emsspring.emsmansys.Mapper.AttendanceMapper">
+    <resultMap id="attendMap" type="org.emsspring.emsmansys.Entity.Attendance">
+        <id column="attendance_id" jdbcType="INTEGER" property="attendanceId"/>
+        <result column="employee_id" jdbcType="INTEGER" property="employeeId"/>
+        <result column="date" jdbcType="DATE" property="date"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+    </resultMap>
+
+    <select id="getAllAttendace" resultMap="attendMap">
+        SELECT * FROM attendance
+    </select>
+</mapper>

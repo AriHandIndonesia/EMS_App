@@ -1,0 +1,43 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.emsspring.emsmansys.Mapper.RoleMapper">
+    <resultMap id="roleMap" type="org.emsspring.emsmansys.Entity.Role">
+        <id column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_description" jdbcType="VARCHAR" property="roleDesc"/>
+    </resultMap>
+
+
+    <select id="getAllRole" resultMap="roleMap">
+        SELECT * FROM role
+    </select>
+
+    <select id="getRoleById" resultMap="roleMap">
+        SELECT role_id,role_name,role_description FROM role WHERE role_id = #{roleId}
+    </select>
+
+    <insert id="addRole" parameterType="org.emsspring.emsmansys.Entity.Role">
+        INSERT INTO role (role_id,role_name,role_description) VALUES (#{roleId},#{roleName},#{roleDesc})
+    </insert>
+
+    <update id="updateRole" parameterType="org.emsspring.emsmansys.Entity.Role">
+            UPDATE role
+            <trim prefix="set" suffixOverrides=",">
+                <if test="roleName != null">
+                    role_name = #{roleName},
+                </if>
+                <if test="roleDesc != null">
+                    role_description = #{roleDesc},
+                </if>
+            </trim>
+            <where>
+                role_id = #{roleId}
+            </where>
+    </update>
+
+    <delete id="deleteRole" parameterType="org.emsspring.emsmansys.Entity.Role">
+        DELETE FROM role
+        <where>
+            role_id = #{roleId}
+        </where>
+    </delete>
+</mapper>

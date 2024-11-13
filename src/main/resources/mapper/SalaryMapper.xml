@@ -1,0 +1,16 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.emsspring.emsmansys.Mapper.SalaryMapper">
+    <resultMap id="salaryMap" type="org.emsspring.emsmansys.Entity.Salary">
+        <id column="salary_id" jdbcType="INTEGER" property="salaryId"/>
+        <result column="employee_id" jdbcType="INTEGER" property="employeeId"/>
+        <result column="amount" jdbcType="DOUBLE" property="amount"/>
+        <result column="currency" jdbcType="VARCHAR" property="currency"/>
+        <result column="start_date" jdbcType="DATE" property="startDate"/>
+        <result column="end_date" jdbcType="DATE" property="endDate"/>
+        <result column="bonus" jdbcType="DOUBLE" property="bonus"/>
+    </resultMap>
+
+    <select id="getAllSalary" resultMap="salaryMap">
+        SELECT * FROM salary
+    </select>
+</mapper>

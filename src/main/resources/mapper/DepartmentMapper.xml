@@ -1,0 +1,42 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.emsspring.emsmansys.Mapper.DepartmentMapper">
+    <resultMap id="deptMap" type="org.emsspring.emsmansys.Entity.Department">
+        <id column="department_id" jdbcType="INTEGER" property="departmentId"/>
+        <result column="department_name" jdbcType="VARCHAR" property="departmentName"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+    </resultMap>
+
+    <select id="getAllDepartment" resultMap="deptMap">
+        SELECT * FROM department
+    </select>
+
+    <select id="getDeptById" resultMap="deptMap">
+        SELECT department_id,department_name,location FROM department WHERE role_id = #{departmentId}
+    </select>
+
+    <insert id="addDept" parameterType="org.emsspring.emsmansys.Entity.Department">
+        INSERT INTO department (department_id,department_name,location) VALUES (#{departmentId},#{departmentName},#{location})
+    </insert>
+
+    <update id="updateDept" parameterType="org.emsspring.emsmansys.Entity.Department">
+        UPDATE department
+        <trim prefix="set" suffixOverrides=",">
+            <if test="departmentName != null">
+                role_name = #{departmentName},
+            </if>
+            <if test="location != null">
+                role_description = #{location},
+            </if>
+        </trim>
+        <where>
+            role_id = #{departmentId}
+        </where>
+    </update>
+
+    <delete id="deleteDept" parameterType="org.emsspring.emsmansys.Entity.Department">
+        DELETE FROM department
+        <where>
+            department_id = #{departmentId}
+        </where>
+    </delete>
+</mapper>
